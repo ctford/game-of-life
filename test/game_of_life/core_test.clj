@@ -1,10 +1,10 @@
 (ns game-of-life.core-test
   (:require [midje.sweet :refer :all]
-            [clojure.set :refer :all]
+            [clojure.set :refer [union]]
             [game-of-life.core :refer [neighbours-of descends-from? generation]]))
 
 (defn subsets [s]
-  (let [with-and-without (fn [s e] (union s (map #(union #{e} %) s)))]
+  (let [with-and-without (fn [s e] (union s (map #(conj % e) s)))]
     (reduce with-and-without #{#{}} s)))
 
 (fact "The neighbours of a cell are all of the adjacent cells."
