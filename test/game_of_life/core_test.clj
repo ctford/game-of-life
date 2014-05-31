@@ -5,8 +5,8 @@
 
 (defn subsets [original]
   (reduce
-    (fn [so-far element] (union so-far (map #(conj % element) so-far)))
-    #{#{}}
+    (fn [so-far element] (concat so-far (map #(conj % element) so-far)))
+    '(#{})
     original))
 
 (fact "The neighbours of a cell are all of the adjacent cells."
