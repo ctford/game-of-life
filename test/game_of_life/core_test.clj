@@ -3,10 +3,11 @@
             [clojure.set :refer [union]]
             [game-of-life.core :refer [neighbours-of descends-from? generation]]))
 
-(defn subsets [s]
-  (let [with-and-without (fn [combs e] (union combs
-                                              (map #(conj % e) combs)))]
-    (reduce with-and-without #{#{}} s)))
+(defn subsets [original]
+  (reduce
+    (fn [so-far element] (union so-far (map #(conj % element) so-far)))
+    #{#{}}
+    original))
 
 (fact "The neighbours of a cell are all of the adjacent cells."
   (neighbours-of [1 1]) => #{[0 2] [1 2] [2 2]
