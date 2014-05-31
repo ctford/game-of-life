@@ -20,7 +20,7 @@
                     [0 0] [1 0] [2 0]} [1 0]) => truthy
 
   (for [neighbours (->> (neighbours-of [1 1]) subsets (filter (comp #{2 3} count)))]
-    (descends-from? (union #{[1 1]} neighbours) [1 1])) =>  (has every? truthy))
+    (descends-from? (conj neighbours [1 1]) [1 1])) =>  (has every? truthy))
 
 (fact "Live cells die if they have any other number of neighbours."
   (descends-from? #{ , ,  [1 2]  , ,
@@ -28,7 +28,7 @@
                      , ,  [1 0]  , ,} [1 1]) => falsey
 
   (for [neighbours (->> (neighbours-of [1 1]) subsets (filter (comp not #{2 3} count)))]
-    (descends-from? (union #{[1 1]} neighbours) [1 1])) => (has every? falsey))
+    (descends-from? (conj neighbours [1 1]) [1 1])) => (has every? falsey))
 
 (fact "Dead cells sponteneously generate if they have three neighbours."
   (descends-from? #{ , ,  [1 1]  , ,
