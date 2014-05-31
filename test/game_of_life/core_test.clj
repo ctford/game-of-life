@@ -21,7 +21,7 @@
 
   (for [crowding (-> (range 0 9) set (difference #{2 3}))]
     (let [crowd (->> (neighbours-of [1 0]) (take crowding) set)]
-      (descends-from? crowd [1 0])))) => (has every? falsey)
+      (descends-from? crowd [1 0]))) => (has every? falsey))
 
 (fact "Dead cells sponteneously generate if they have three neighbours."
   (descends-from? #{ , ,  [1 1]  , ,
