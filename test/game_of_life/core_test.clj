@@ -4,7 +4,8 @@
             [game-of-life.core :refer [neighbours-of descends-from? generation]]))
 
 (defn subsets [s]
-  (let [with-and-without (fn [combs e] (union combs (map #(conj % e) combs)))]
+  (let [with-and-without (fn [combs e] (union combs
+                                              (map #(conj % e) combs)))]
     (reduce with-and-without #{#{}} s)))
 
 (fact "The neighbours of a cell are all of the adjacent cells."
